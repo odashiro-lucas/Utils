@@ -20,6 +20,10 @@ namespace Utils
         public static readonly Float2 Zero = new Float2(Vector2.Zero);
         public static readonly Float2 One = new Float2(Vector2.One);
 
+        public float DistanceTo(Float2 other) => System.Numerics.Vector2.Distance(this._vector, other._vector);
+        public float DistanceSquaredTo(Float2 other) => System.Numerics.Vector2.DistanceSquared(this._vector, other._vector);
+        public Float2 DirectionTo(Float2 other) => new Float2(System.Numerics.Vector2.Normalize(other._vector - this._vector));
+
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Float2 operator +(Float2 a, Float2 b) => new Float2(a._vector + b._vector);
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
