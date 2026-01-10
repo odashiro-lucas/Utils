@@ -112,7 +112,7 @@ namespace Utils
         /// <br/> Fast due to no heap allocation.</summary>
         /// <returns>The interpolated Float2 at t.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Float2 Serp(Float2 a, Float2 b, Float2 c, float t) => new Float2(a.X + (2 * (b.X - a.X) + (a.X - 2 * b.X + c.X) * t) * t, a.Y + (2 * (b.Y - a.Y) + (a.Y - 2 * b.Y + c.Y) * t) * t);
+        public static Float2 Serp(Float2 a, Float2 b, Float2 c, float t) => new Float2(a.x + (2 * (b.x - a.x) + (a.x - 2 * b.x + c.x) * t) * t, a.y + (2 * (b.y - a.y) + (a.y - 2 * b.y + c.y) * t) * t);
 
         /// <summary> Efficient 3-point Float3 spline interpolation (quadratic Bezier in 2nd degree Bernstein polynomial form).
         /// <br/> Fast due to no heap allocation.</summary>
@@ -130,7 +130,7 @@ namespace Utils
         /// <br/> Fast due to no heap allocation.</summary>
         /// <returns>The interpolated Float2 at t.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Float2 Serp(Float2 a, Float2 b, Float2 c, Float2 d, float t) => new Float2(a.X + (3 * (b.X - a.X) + (3 * (a.X - 2 * b.X + c.X) + (-a.X + 3 * b.X - 3 * c.X + d.X) * t) * t) * t, a.Y + (3 * (b.Y - a.Y) + (3 * (a.Y - 2 * b.Y + c.Y) + (-a.Y + 3 * b.Y - 3 * c.Y + d.Y) * t) * t) * t);
+        public static Float2 Serp(Float2 a, Float2 b, Float2 c, Float2 d, float t) => new Float2(a.x + (3 * (b.x - a.x) + (3 * (a.x - 2 * b.x + c.x) + (-a.x + 3 * b.x - 3 * c.x + d.x) * t) * t) * t, a.y + (3 * (b.y - a.y) + (3 * (a.y - 2 * b.y + c.y) + (-a.y + 3 * b.y - 3 * c.y + d.y) * t) * t) * t);
 
         /// <summary> Efficient 4-point Float3 spline interpolation (cubic Bezier in 3rd degree Bernstein polynomial form).
         /// <br/> Fast due to no heap allocation.</summary>

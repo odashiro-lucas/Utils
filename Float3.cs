@@ -20,7 +20,7 @@ namespace Utils
             _vector = v;
         }
 
-        public float X
+        public float x
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             get => _vector.X;
@@ -28,7 +28,7 @@ namespace Utils
             set => _vector.X = value;
         }
 
-        public float Y
+        public float y
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             get => _vector.Y;
@@ -36,7 +36,7 @@ namespace Utils
             set => _vector.Y = value;
         }
 
-        public float Z
+        public float z
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             get => _vector.Z;
@@ -46,6 +46,12 @@ namespace Utils
 
         public static readonly Float3 Zero = new Float3(Vector3.Zero);
         public static readonly Float3 One = new Float3(Vector3.One);
+
+        public float DistanceTo(Float3 other) => System.Numerics.Vector3.Distance(this._vector, other._vector);
+        public float DistanceSquaredTo(Float3 other) => System.Numerics.Vector3.DistanceSquared(this._vector, other._vector);
+        public Float3 DirectionTo(Float3 other) => new Float3(System.Numerics.Vector3.Normalize(other._vector - this._vector));
+        public Float3 Normalized() => new Float3(System.Numerics.Vector3.Normalize(this._vector));
+        public float Length() => this._vector.Length();
 
         // --- SIMD Operators ---
 
@@ -77,24 +83,24 @@ namespace Utils
 
         // Explicit: Float3 -> Int3 (Truncates)
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static explicit operator Int3(Float3 v) => new Int3((int)v.X, (int)v.Y, (int)v.Z);
+        public static explicit operator Int3(Float3 v) => new Int3((int)v.x, (int)v.y, (int)v.z);
 
         // Explicit: Float3 -> Float2 (Drops Z)
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static explicit operator Float2(Float3 v) => new Float2(v.X, v.Y);
+        public static explicit operator Float2(Float3 v) => new Float2(v.x, v.y);
 
         // Implicit: Float2 -> Float3 (Z = 0)
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static implicit operator Float3(Float2 v) => new Float3(v.X, v.Y, 0f);
+        public static implicit operator Float3(Float2 v) => new Float3(v.x, v.y, 0f);
 
-        public override string ToString() => $"({X:F2}, {Y:F2}, {Z:F2})";
+        public override string ToString() => $"({x:F2}, {y:F2}, {z:F2})";
 
         // ==========================================
         // GODOT SUPPORT
         // ==========================================
 #if GODOT
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static implicit operator Godot.Vector3(Float3 v) => new Godot.Vector3(v.X, v.Y, v.Z);
+        public static implicit operator Godot.Vector3(Float3 v) => new Godot.Vector3(v.x, v.y, v.z);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static implicit operator Float3(Godot.Vector3 v) => new Float3(v.X, v.Y, v.Z);
@@ -105,7 +111,7 @@ namespace Utils
         // ==========================================
 #if UNITY_5_3_OR_NEWER
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static implicit operator UnityEngine.Vector3(Float3 v) => new UnityEngine.Vector3(v.X, v.Y, v.Z);
+        public static implicit operator UnityEngine.Vector3(Float3 v) => new UnityEngine.Vector3(v.x, v.y, v.z);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static implicit operator Float3(UnityEngine.Vector3 v) => new Float3(v.x, v.y, v.z);
