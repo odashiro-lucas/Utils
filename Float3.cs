@@ -50,8 +50,10 @@ namespace Utils
         public float DistanceTo(Float3 other) => System.Numerics.Vector3.Distance(this._vector, other._vector);
         public float DistanceSquaredTo(Float3 other) => System.Numerics.Vector3.DistanceSquared(this._vector, other._vector);
         public Float3 DirectionTo(Float3 other) => new Float3(System.Numerics.Vector3.Normalize(other._vector - this._vector));
-        public Float3 Normalized() => new Float3(System.Numerics.Vector3.Normalize(this._vector));
-        public float Length() => this._vector.Length();
+        public Float3 Normalized => new Float3(System.Numerics.Vector3.Normalize(this._vector));
+        public float Length => this._vector.Length();
+        /// <summary>Faster than Length as it avoids the square root calculation.</summary>
+        public float LengthSquared => this._vector.LengthSquared();
 
         // --- SIMD Operators ---
 

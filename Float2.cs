@@ -23,8 +23,10 @@ namespace Utils
         public float DistanceTo(Float2 other) => System.Numerics.Vector2.Distance(this._vector, other._vector);
         public float DistanceSquaredTo(Float2 other) => System.Numerics.Vector2.DistanceSquared(this._vector, other._vector);
         public Float2 DirectionTo(Float2 other) => new Float2(System.Numerics.Vector2.Normalize(other._vector - this._vector));
-        public Float2 Normalized() => new Float2(System.Numerics.Vector2.Normalize(this._vector));
-        public float Length() => this._vector.Length();
+        public Float2 Normalized => new Float2(System.Numerics.Vector2.Normalize(this._vector));
+        public float Length => this._vector.Length();
+        /// <summary>Faster than Length as it avoids the square root calculation.</summary>
+        public float LengthSquared => this._vector.LengthSquared();
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Float2 operator +(Float2 a, Float2 b) => new Float2(a._vector + b._vector);

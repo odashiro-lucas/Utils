@@ -11,11 +11,13 @@ namespace Utils
         public static readonly Int3 Right = new Int3(1, 0, 0);
         public static readonly Int3 Forward = new Int3(0, 0, 1);
 
-        public float DistanceTo(Int3 other) => MathF.Sqrt(DistanceSquaredTo(other));
+        public int DistanceTo(Int3 other) => (int)MathF.Sqrt(DistanceSquaredTo(other));
         public int DistanceSquaredTo(Int3 other) => (x - other.x) * (x - other.x) + (y - other.y) * (y - other.y) + (z - other.z) * (z - other.z);
-        public Float3 DirectionTo(Int3 other) => ((Float3)other - (Float3)this).Normalized();
-        public float Length() => MathF.Sqrt(LengthSquared());
-        public int LengthSquared() => x * x + y * y + z * z;
+        public Int3 DirectionTo(Int3 other) => (Int3)((Float3)other - (Float3)this).Normalized;
+        public Int3 Normalized => (Int3)((Float3)this).Normalized;
+        public int Length => (int)MathF.Sqrt(LengthSquared);
+        /// <summary>Faster than Length as it avoids the square root calculation.</summary>
+        public int LengthSquared => x * x + y * y + z * z;
 
         // --- Operators (Int3 vs Int3) ---
 

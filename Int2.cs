@@ -10,11 +10,13 @@ namespace Utils
         public static readonly Int2 Up = new Int2(0, 1);
         public static readonly Int2 Right = new Int2(1, 0);
 
-        public float DistanceTo(Int2 other) => MathF.Sqrt(DistanceSquaredTo(other));
+        public int DistanceTo(Int2 other) => (int)MathF.Sqrt(DistanceSquaredTo(other));
         public int DistanceSquaredTo(Int2 other) => (x - other.x) * (x - other.x) + (y - other.y) * (y - other.y);
-        public Float2 DirectionTo(Int2 other) => ((Float2)other - (Float2)this).Normalized();
-        public float Length() => MathF.Sqrt(LengthSquared());
-        public int LengthSquared() => x * x + y * y;
+        public Int2 DirectionTo(Int2 other) => (Int2)((Float2)other - (Float2)this).Normalized;
+        public Int2 Normalized => (Int2)((Float2)this).Normalized;
+        public int Length => (int)MathF.Sqrt(LengthSquared);
+        /// <summary>Faster than Length as it avoids the square root calculation.</summary>
+        public int LengthSquared => x * x + y * y;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Int2 operator +(Int2 a, Int2 b) => new Int2(a.x + b.x, a.y + b.y);
