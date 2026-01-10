@@ -118,7 +118,7 @@ namespace Utils
         /// <br/> Fast due to no heap allocation.</summary>
         /// <returns>The interpolated Float3 at t.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Float3 Serp(Float3 a, Float3 b, Float3 c, float t) => new Float3(a.X + (2 * (b.X - a.X) + (a.X - 2 * b.X + c.X) * t) * t, a.Y + (2 * (b.Y - a.Y) + (a.Y - 2 * b.Y + c.Y) * t) * t, a.Z + (2 * (b.Z - a.Z) + (a.Z - 2 * b.Z + c.Z) * t) * t);
+        public static Float3 Serp(Float3 a, Float3 b, Float3 c, float t) => new Float3(a.x + (2 * (b.x - a.x) + (a.x - 2 * b.x + c.x) * t) * t, a.y + (2 * (b.y - a.y) + (a.y - 2 * b.y + c.y) * t) * t, a.z + (2 * (b.z - a.z) + (a.z - 2 * b.z + c.z) * t) * t);
 
         /// <summary> Efficient 4-point spline interpolation (cubic Bezier in 3rd degree Bernstein polynomial form).
         /// <br/> Fast due to no heap allocation.</summary>
@@ -136,7 +136,7 @@ namespace Utils
         /// <br/> Fast due to no heap allocation.</summary>
         /// <returns>The interpolated Float3 at t.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Float3 Serp(Float3 a, Float3 b, Float3 c, Float3 d, float t) => new Float3(a.X + (3 * (b.X - a.X) + (3 * (a.X - 2 * b.X + c.X) + (-a.X + 3 * b.X - 3 * c.X + d.X) * t) * t) * t, a.Y + (3 * (b.Y - a.Y) + (3 * (a.Y - 2 * b.Y + c.Y) + (-a.Y + 3 * b.Y - 3 * c.Y + d.Y) * t) * t) * t, a.Z + (3 * (b.Z - a.Z) + (3 * (a.Z - 2 * b.Z + c.Z) + (-a.Z + 3 * b.Z - 3 * c.Z + d.Z) * t) * t) * t);
+        public static Float3 Serp(Float3 a, Float3 b, Float3 c, Float3 d, float t) => new Float3(a.x + (3 * (b.x - a.x) + (3 * (a.x - 2 * b.x + c.x) + (-a.x + 3 * b.x - 3 * c.x + d.x) * t) * t) * t, a.y + (3 * (b.y - a.y) + (3 * (a.y - 2 * b.y + c.y) + (-a.y + 3 * b.y - 3 * c.y + d.y) * t) * t) * t, a.z + (3 * (b.z - a.z) + (3 * (a.z - 2 * b.z + c.z) + (-a.z + 3 * b.z - 3 * c.z + d.z) * t) * t) * t);
 
         /// <summary>Fast search for a target value in a 2D matrix using MemoryMarshal.</summary>
         /// <returns>The (row, col) position of the target, or (-1, -1) if not found.</returns>
