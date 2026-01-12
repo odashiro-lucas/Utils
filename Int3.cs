@@ -19,6 +19,33 @@ namespace Utils
         /// <summary>Faster than Length as it avoids the square root calculation.</summary>
         public int LengthSquared => x * x + y * y + z * z;
 
+        // --- Random ---
+        private static readonly Random _rand = new Random();
+
+        /// <summary>Returns a random Int3 with x, y, and z in range [-range, range].</summary>
+        public static Int3 Rand(int range) => new Int3(
+            _rand.Next(-range, range + 1),
+            _rand.Next(-range, range + 1),
+            _rand.Next(-range, range + 1));
+
+        /// <summary>Returns a random Int3 with x, y, and z in range [min, max].</summary>
+        public static Int3 Rand(int min, int max) => new Int3(
+            _rand.Next(min, max + 1),
+            _rand.Next(min, max + 1),
+            _rand.Next(min, max + 1));
+
+        /// <summary>Returns a random Int3 with x in [xRange.x, xRange.y], y in [yRange.x, yRange.y], z in [zRange.x, zRange.y].</summary>
+        public static Int3 Rand(Int2 xRange, Int2 yRange, Int2 zRange) => new Int3(
+            _rand.Next(xRange.x, xRange.y + 1),
+            _rand.Next(yRange.x, yRange.y + 1),
+            _rand.Next(zRange.x, zRange.y + 1));
+
+        /// <summary>Returns a random Int3 with x in [xMin, xMax], y in [yMin, yMax], z in [zMin, zMax].</summary>
+        public static Int3 Rand(int xMin, int xMax, int yMin, int yMax, int zMin, int zMax) => new Int3(
+            _rand.Next(xMin, xMax + 1),
+            _rand.Next(yMin, yMax + 1),
+            _rand.Next(zMin, zMax + 1));
+
         // --- Operators (Int3 vs Int3) ---
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]

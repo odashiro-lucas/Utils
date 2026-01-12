@@ -18,6 +18,29 @@ namespace Utils
         /// <summary>Faster than Length as it avoids the square root calculation.</summary>
         public int LengthSquared => x * x + y * y;
 
+        // --- Random ---
+        private static readonly Random _rand = new Random();
+
+        /// <summary>Returns a random Int2 with x and y in range [-range, range].</summary>
+        public static Int2 Rand(int range) => new Int2(
+            _rand.Next(-range, range + 1),
+            _rand.Next(-range, range + 1));
+
+        /// <summary>Returns a random Int2 with x and y in range [min, max].</summary>
+        public static Int2 Rand(int min, int max) => new Int2(
+            _rand.Next(min, max + 1),
+            _rand.Next(min, max + 1));
+
+        /// <summary>Returns a random Int2 with x in range [xRange.x, xRange.y] and y in range [yRange.x, yRange.y].</summary>
+        public static Int2 Rand(Int2 xRange, Int2 yRange) => new Int2(
+            _rand.Next(xRange.x, xRange.y + 1),
+            _rand.Next(yRange.x, yRange.y + 1));
+
+        /// <summary>Returns a random Int2 with x in range [xMin, xMax] and y in range [yMin, yMax].</summary>
+        public static Int2 Rand(int xMin, int xMax, int yMin, int yMax) => new Int2(
+            _rand.Next(xMin, xMax + 1),
+            _rand.Next(yMin, yMax + 1));
+
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Int2 operator +(Int2 a, Int2 b) => new Int2(a.x + b.x, a.y + b.y);
         [MethodImpl(MethodImplOptions.AggressiveInlining)]

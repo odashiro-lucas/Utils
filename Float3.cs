@@ -55,6 +55,33 @@ namespace Utils
         /// <summary>Faster than Length as it avoids the square root calculation.</summary>
         public float LengthSquared => this._vector.LengthSquared();
 
+        // --- Random ---
+        private static readonly Random _rand = new Random();
+
+        /// <summary>Returns a random Float3 with x, y, and z in range [-range, range].</summary>
+        public static Float3 Rand(float range) => new Float3(
+            (float)(_rand.NextDouble() * 2 - 1) * range,
+            (float)(_rand.NextDouble() * 2 - 1) * range,
+            (float)(_rand.NextDouble() * 2 - 1) * range);
+
+        /// <summary>Returns a random Float3 with x, y, and z in range [min, max].</summary>
+        public static Float3 Rand(float min, float max) => new Float3(
+            (float)(_rand.NextDouble() * (max - min) + min),
+            (float)(_rand.NextDouble() * (max - min) + min),
+            (float)(_rand.NextDouble() * (max - min) + min));
+
+        /// <summary>Returns a random Float3 with x in [xRange.x, xRange.y], y in [yRange.x, yRange.y], z in [zRange.x, zRange.y].</summary>
+        public static Float3 Rand(Float2 xRange, Float2 yRange, Float2 zRange) => new Float3(
+            (float)(_rand.NextDouble() * (xRange.y - xRange.x) + xRange.x),
+            (float)(_rand.NextDouble() * (yRange.y - yRange.x) + yRange.x),
+            (float)(_rand.NextDouble() * (zRange.y - zRange.x) + zRange.x));
+
+        /// <summary>Returns a random Float3 with x in [xMin, xMax], y in [yMin, yMax], z in [zMin, zMax].</summary>
+        public static Float3 Rand(float xMin, float xMax, float yMin, float yMax, float zMin, float zMax) => new Float3(
+            (float)(_rand.NextDouble() * (xMax - xMin) + xMin),
+            (float)(_rand.NextDouble() * (yMax - yMin) + yMin),
+            (float)(_rand.NextDouble() * (zMax - zMin) + zMin));
+
         // --- SIMD Operators ---
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]

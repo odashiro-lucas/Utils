@@ -28,6 +28,29 @@ namespace Utils
         /// <summary>Faster than Length as it avoids the square root calculation.</summary>
         public float LengthSquared => this._vector.LengthSquared();
 
+        // --- Random ---
+        private static readonly Random _rand = new Random();
+
+        /// <summary>Returns a random Float2 with x and y in range [-range, range].</summary>
+        public static Float2 Rand(float range) => new Float2(
+            (float)(_rand.NextDouble() * 2 - 1) * range,
+            (float)(_rand.NextDouble() * 2 - 1) * range);
+
+        /// <summary>Returns a random Float2 with x and y in range [min, max].</summary>
+        public static Float2 Rand(float min, float max) => new Float2(
+            (float)(_rand.NextDouble() * (max - min) + min),
+            (float)(_rand.NextDouble() * (max - min) + min));
+
+        /// <summary>Returns a random Float2 with x in range [xRange.x, xRange.y] and y in range [yRange.x, yRange.y].</summary>
+        public static Float2 Rand(Float2 xRange, Float2 yRange) => new Float2(
+            (float)(_rand.NextDouble() * (xRange.y - xRange.x) + xRange.x),
+            (float)(_rand.NextDouble() * (yRange.y - yRange.x) + yRange.x));
+
+        /// <summary>Returns a random Float2 with x in range [xMin, xMax] and y in range [yMin, yMax].</summary>
+        public static Float2 Rand(float xMin, float xMax, float yMin, float yMax) => new Float2(
+            (float)(_rand.NextDouble() * (xMax - xMin) + xMin),
+            (float)(_rand.NextDouble() * (yMax - yMin) + yMin));
+
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Float2 operator +(Float2 a, Float2 b) => new Float2(a._vector + b._vector);
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
