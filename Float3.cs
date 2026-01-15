@@ -60,27 +60,47 @@ namespace Utils
 
         /// <summary>Returns a random Float3 with x, y, and z in range [-range, range].</summary>
         public static Float3 Rand(float range) => new Float3(
-            (float)(_rand.NextDouble() * 2 - 1) * range,
-            (float)(_rand.NextDouble() * 2 - 1) * range,
-            (float)(_rand.NextDouble() * 2 - 1) * range);
+            (_rand.NextSingle() * 2 - 1) * range,
+            (_rand.NextSingle() * 2 - 1) * range,
+            (_rand.NextSingle() * 2 - 1) * range);
 
         /// <summary>Returns a random Float3 with x, y, and z in range [min, max].</summary>
         public static Float3 Rand(float min, float max) => new Float3(
-            (float)(_rand.NextDouble() * (max - min) + min),
-            (float)(_rand.NextDouble() * (max - min) + min),
-            (float)(_rand.NextDouble() * (max - min) + min));
+            _rand.NextSingle() * (max - min) + min,
+            _rand.NextSingle() * (max - min) + min,
+            _rand.NextSingle() * (max - min) + min);
 
         /// <summary>Returns a random Float3 with x in [xRange.x, xRange.y], y in [yRange.x, yRange.y], z in [zRange.x, zRange.y].</summary>
         public static Float3 Rand(Float2 xRange, Float2 yRange, Float2 zRange) => new Float3(
-            (float)(_rand.NextDouble() * (xRange.y - xRange.x) + xRange.x),
-            (float)(_rand.NextDouble() * (yRange.y - yRange.x) + yRange.x),
-            (float)(_rand.NextDouble() * (zRange.y - zRange.x) + zRange.x));
+            _rand.NextSingle() * (xRange.y - xRange.x) + xRange.x,
+            _rand.NextSingle() * (yRange.y - yRange.x) + yRange.x,
+            _rand.NextSingle() * (zRange.y - zRange.x) + zRange.x);
 
         /// <summary>Returns a random Float3 with x in [xMin, xMax], y in [yMin, yMax], z in [zMin, zMax].</summary>
         public static Float3 Rand(float xMin, float xMax, float yMin, float yMax, float zMin, float zMax) => new Float3(
-            (float)(_rand.NextDouble() * (xMax - xMin) + xMin),
-            (float)(_rand.NextDouble() * (yMax - yMin) + yMin),
-            (float)(_rand.NextDouble() * (zMax - zMin) + zMin));
+            _rand.NextSingle() * (xMax - xMin) + xMin,
+            _rand.NextSingle() * (yMax - yMin) + yMin,
+            _rand.NextSingle() * (zMax - zMin) + zMin);
+
+        /// <summary> Returns a random Float3 with vector length shorter or equal to [maxLength]. </summary>
+        public static Float3 RandMaxLength(float maxLength)
+        {
+            float u = _rand.NextSingle();
+            float v = _rand.NextSingle();
+            float theta = 2.0f * MathF.PI * u;
+            float phi = MathF.Acos(2.0f * v - 1.0f);
+            
+            float x = MathF.Sin(phi) * MathF.Cos(theta);
+            float y = MathF.Sin(phi) * MathF.Sin(theta);
+            float z = MathF.Cos(phi);
+
+            float distance = MathF.Pow(_rand.NextSingle(), 1.0f / 3.0f) * maxLength; // cbrt for uniform distribution
+            
+            return new Float3(
+                x * distance,
+                y * distance,
+                z * distance);
+        }
 
         // --- SIMD Operators ---
 
