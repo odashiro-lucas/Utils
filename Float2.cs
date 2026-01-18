@@ -24,9 +24,9 @@ namespace Utils
         public float DistanceSquaredTo(Float2 other) => System.Numerics.Vector2.DistanceSquared(this._vector, other._vector);
         public Float2 DirectionTo(Float2 other) => new Float2(System.Numerics.Vector2.Normalize(other._vector - this._vector));
         public Float2 Normalized => new Float2(System.Numerics.Vector2.Normalize(this._vector));
-        public float Length => this._vector.Length();
-        /// <summary>Faster than Length as it avoids the square root calculation.</summary>
-        public float LengthSquared => this._vector.LengthSquared();
+        public float Magnitude => this._vector.Length();
+        /// <summary> Faster than Magnitude as it avoids the square root calculation.</summary>
+        public float MagnitudeSquared => this._vector.LengthSquared();
 
         // --- Random ---
         private static readonly Random _rand = new Random();
