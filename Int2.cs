@@ -67,11 +67,6 @@ namespace Utils
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Float2 operator /(Int2 a, float divisor) => new Float2(a.x / divisor, a.y / divisor);
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool operator ==(Int2 left, Int2 right) => left.x == right.x && left.y == right.y;
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool operator !=(Int2 left, Int2 right) => !(left == right);
 
         // --- Conversions ---
 

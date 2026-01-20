@@ -83,11 +83,6 @@ namespace Utils
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Float3 operator *(float scalar, Int3 a) => new Float3(a.x * scalar, a.y * scalar, a.z * scalar);
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool operator ==(Int3 left, Int3 right) => left.x == right.x && left.y == right.y && left.z == right.z;
-        
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool operator !=(Int3 left, Int3 right) => !(left == right);
 
         // --- Conversions ---
 
@@ -99,9 +94,6 @@ namespace Utils
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static explicit operator Int2(Int3 v) => new Int2(v.x, v.y);
 
-        // Implicit: Int2 -> Int3 (Z = 0)
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static implicit operator Int3(Int2 v) => new Int3(v.x, v.y, 0);
 
         public override string ToString() => $"({x}, {y}, {z})";
 
