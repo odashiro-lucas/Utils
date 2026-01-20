@@ -18,6 +18,10 @@ namespace Utils
         /// <summary>Faster than Length as it avoids the square root calculation.</summary>
         public int LengthSquared => x * x + y * y;
 
+        // --- Component-wise Math ---
+        public static Int2 Clamp(Int2 value, Int2 min, Int2 max) => new Int2(Math.Clamp(value.x, min.x, max.x), Math.Clamp(value.y, min.y, max.y));
+        public static Int2 Abs(Int2 value) => new Int2(Math.Abs(value.x), Math.Abs(value.y));
+
         // --- Random ---
         private static readonly Random _rand = new Random();
 
@@ -62,6 +66,12 @@ namespace Utils
         public static Float2 operator *(float scalar, Int2 a) => new Float2(a.x * scalar, a.y * scalar);
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Float2 operator /(Int2 a, float divisor) => new Float2(a.x / divisor, a.y / divisor);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool operator ==(Int2 left, Int2 right) => left.x == right.x && left.y == right.y;
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool operator !=(Int2 left, Int2 right) => !(left == right);
 
         // --- Conversions ---
 

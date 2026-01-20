@@ -55,6 +55,18 @@ namespace Utils
         /// <summary>Faster than Length as it avoids the square root calculation.</summary>
         public float LengthSquared => this._vector.LengthSquared();
 
+        // --- Vector Math ---
+        public float Dot(Float3 other) => System.Numerics.Vector3.Dot(this._vector, other._vector);
+        public Float3 Cross(Float3 other) => new Float3(System.Numerics.Vector3.Cross(this._vector, other._vector));
+        public Float3 Reflect(Float3 normal) => new Float3(System.Numerics.Vector3.Reflect(this._vector, normal._vector));
+
+        // --- Component-wise Math ---
+        public static Float3 Clamp(Float3 value, Float3 min, Float3 max) => new Float3(System.Numerics.Vector3.Clamp(value._vector, min._vector, max._vector));
+        public static Float3 Abs(Float3 value) => new Float3(System.Numerics.Vector3.Abs(value._vector));
+        public Float3 Round => new Float3(MathF.Round(x), MathF.Round(y), MathF.Round(z));
+        public Float3 Floor => new Float3(MathF.Floor(x), MathF.Floor(y), MathF.Floor(z));
+        public Float3 Ceil => new Float3(MathF.Ceiling(x), MathF.Ceiling(y), MathF.Ceiling(z));
+
         // --- Random ---
         private static readonly Random _rand = new Random();
 
@@ -127,6 +139,21 @@ namespace Utils
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Float3 operator /(Float3 a, float divisor) => new Float3(a._vector / divisor);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public override bool Equals(object obj) => obj is Float3 other && Equals(other);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public bool Equals(Float3 other) => _vector.Equals(other._vector);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public override int GetHashCode() => _vector.GetHashCode();
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool operator ==(Float3 left, Float3 right) => left.Equals(right);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool operator !=(Float3 left, Float3 right) => !(left == right);
 
         // --- Conversions ---
 

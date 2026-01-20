@@ -28,6 +28,17 @@ namespace Utils
         /// <summary> Faster than Magnitude as it avoids the square root calculation.</summary>
         public float MagnitudeSquared => this._vector.LengthSquared();
 
+        // --- Vector Math ---
+        public float Dot(Float2 other) => System.Numerics.Vector2.Dot(this._vector, other._vector);
+        public Float2 Reflect(Float2 normal) => new Float2(System.Numerics.Vector2.Reflect(this._vector, normal._vector));
+
+        // --- Component-wise Math ---
+        public static Float2 Clamp(Float2 value, Float2 min, Float2 max) => new Float2(System.Numerics.Vector2.Clamp(value._vector, min._vector, max._vector));
+        public static Float2 Abs(Float2 value) => new Float2(System.Numerics.Vector2.Abs(value._vector));
+        public Float2 Round => new Float2(MathF.Round(x), MathF.Round(y));
+        public Float2 Floor => new Float2(MathF.Floor(x), MathF.Floor(y));
+        public Float2 Ceil => new Float2(MathF.Ceiling(x), MathF.Ceiling(y));
+
         // --- Random ---
         private static readonly Random _rand = new Random();
 
@@ -76,6 +87,21 @@ namespace Utils
         public static Float2 operator *(float scalar, Float2 a) => new Float2(a._vector * scalar);
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Float2 operator /(Float2 a, float divisor) => new Float2(a._vector / divisor);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public override bool Equals(object obj) => obj is Float2 other && Equals(other);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public bool Equals(Float2 other) => _vector.Equals(other._vector);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public override int GetHashCode() => _vector.GetHashCode();
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool operator ==(Float2 left, Float2 right) => left.Equals(right);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool operator !=(Float2 left, Float2 right) => !(left == right);
 
         // --- Conversions ---
 
